@@ -418,10 +418,8 @@
 }
 
 .ft-results__card-img {
-    width: 100%;
-    max-width: 498px;
+    width: 498px;
     height: 607px;
-    aspect-ratio: 32/39;
     border-radius: 12px;
     object-fit: cover;
     display: block;
