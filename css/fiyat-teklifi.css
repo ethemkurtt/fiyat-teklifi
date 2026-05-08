@@ -1663,12 +1663,12 @@ img.ft-tech__card-icon {
     /* Video as full background */
     .ft-hero__video-wrap {
         position: absolute !important;
-        top: 90px !important;
+        top: 0 !important;
         left: 0 !important;
         right: 0 !important;
         bottom: 0 !important;
         width: 100% !important;
-        height: auto !important;
+        height: 100% !important;
         margin: 0 !important;
         z-index: 1;
     }
