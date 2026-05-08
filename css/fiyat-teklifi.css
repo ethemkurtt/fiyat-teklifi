@@ -10,6 +10,10 @@
     padding: 0 !important;
 }
 
+.e-con-inner {
+    padding: 0 !important;
+}
+
 /* ===== RESET ===== */
 .ft-header *,
 .ft-header *::before,
@@ -151,8 +155,8 @@
 
 .ft-hero__inner {
     position: relative;
-    max-width: 1440px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0 !important;
     height: 100%;
     display: flex;
     align-items: stretch;
@@ -327,12 +331,13 @@
 /* --- Right Video --- */
 .ft-hero__video-wrap {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0 !important;
+    right: 0 !important;
     width: 496px;
     height: 864px;
     z-index: 1;
-    margin-top: 50px;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .ft-hero__video {
