@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===== RESULTS SLIDER ===== */
     initSlider('.ft-results__track', '.ft-results__prev', '.ft-results__next', '.ft-results__card', 2, 24);
 
-    /* ===== REVIEWS SLIDER ===== */
-    initSlider('.ft-reviews__track', '.ft-reviews__prev', '.ft-reviews__next', '.ft-reviews__card', 3, 24);
+    /* ===== REVIEWS SLIDER (auto-scroll horizontal, no arrows) ===== */
+    initSlider('.ft-reviews__track', '.ft-reviews__prev', '.ft-reviews__next', '.ft-reviews__card', 3, 0);
 
 });
