@@ -511,6 +511,155 @@
 }
 
 /* ============================================
+   TECH (Dünyada Sadece ElitHair'de) SECTION
+   ============================================ */
+.ft-tech {
+    background: #FFFFFF;
+    padding: 80px 0;
+    width: 100%;
+}
+
+.ft-tech__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 36px;
+}
+
+.ft-tech__title {
+    color: #003366;
+    text-align: center;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0 0 12px;
+}
+
+.ft-tech__subtitle {
+    color: #666666;
+    text-align: center;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 48px;
+}
+
+.ft-tech__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.ft-tech__card {
+    border: 1px solid #E5E5E5;
+    border-radius: 16px;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #FFFFFF;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ft-tech__card:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+}
+
+.ft-tech__card-icon {
+    width: 96px !important;
+    height: 96px !important;
+    max-width: 96px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin-bottom: 24px;
+    display: block;
+}
+
+.ft-tech__card-title {
+    color: #1A1A1A;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 16px;
+}
+
+.ft-tech__card-desc {
+    color: #555555;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.ft-tech__cta-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.ft-tech__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 372px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    background: #F98755;
+    color: #FEFEFE;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ft-tech__cta:hover {
+    background: #e6734a;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .ft-tech {
+        padding: 50px 0;
+    }
+    .ft-tech__inner {
+        padding: 0 20px;
+    }
+    .ft-tech__title {
+        font-size: 28px;
+    }
+    .ft-tech__subtitle {
+        font-size: 15px;
+        margin-bottom: 32px;
+    }
+    .ft-tech__cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 32px;
+    }
+    .ft-tech__card {
+        padding: 32px 24px;
+    }
+    .ft-tech__card-title {
+        font-size: 20px;
+    }
+    .ft-tech__card-desc {
+        font-size: 14px;
+    }
+    .ft-tech__cta {
+        width: 100%;
+    }
+}
+
+/* ============================================
    TOUR (CloudPano) SECTION
    ============================================ */
 .ft-tour {
