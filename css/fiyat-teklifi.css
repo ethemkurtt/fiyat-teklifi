@@ -1,14 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* ===== ELEMENTOR OVERRIDE ===== */
-.ft-header .e-con-inner,
-.ft-hero .e-con-inner {
+.e-con>.e-con-inner {
     margin: 0 !important;
-    max-width: none !important;
-    padding-inline-start: 0 !important;
-    padding-inline-end: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
 }
 
 /* ===== RESET ===== */
