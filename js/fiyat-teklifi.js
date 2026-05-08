@@ -181,27 +181,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initDragSlider('.ft-reviews__track', '.ft-reviews__card', 5000);
 
-    /* ===== TOUR LAZY LOAD ===== */
-    document.querySelectorAll('.ft-tour__embed').forEach(function (embed) {
-        const cover = embed.querySelector('.ft-tour__cover');
-        const tourUrl = embed.getAttribute('data-tour-url');
-        if (!cover || !tourUrl) return;
+    /* ===== CLOUDPANO TOUR RELOADER =====
+       Forces the shareScript.js to re-execute on each page load
+       so the tour reliably initializes (Elementor cache fix).
+    */
+    document.querySelectorAll('.ft-tour__embed-target').forEach(function (target) {
+        const shortId = target.getAttribute('data-short');
+        if (!shortId) return;
 
-        embed.addEventListener('click', function () {
-            if (cover.classList.contains('is-hidden')) return;
+        target.id = shortId;
+        target.innerHTML = '';
 
-            const iframe = document.createElement('iframe');
-            iframe.src = tourUrl;
-            iframe.setAttribute('width', '100%');
-            iframe.setAttribute('height', '100%');
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allowfullscreen', '');
-            iframe.setAttribute('allow', 'vr; gyroscope; accelerometer; fullscreen');
-            embed.appendChild(iframe);
-
-            cover.classList.add('is-hidden');
-            embed.style.cursor = 'default';
-        });
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.setAttribute('data-short', shortId);
+        s.setAttribute('data-path', 'tours');
+        s.setAttribute('data-is-self-hosted', 'undefined');
+        s.setAttribute('width', '100%');
+        s.setAttribute('height', '100%');
+        s.src = 'https://app.cloudpano.com/public/shareScript.js?_=' + Date.now();
+        target.appendChild(s);
     });
 
 });
