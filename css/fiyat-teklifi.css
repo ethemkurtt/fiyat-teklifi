@@ -1551,6 +1551,7 @@ img.ft-tech__card-icon {
     /* ================ HEADER MOBILE ================ */
     .ft-header {
         height: 64px !important;
+        background: linear-gradient(180deg, rgba(0, 51, 102, 0.20) 21.3%, rgba(0, 51, 102, 0.10) 79.81%, rgba(0, 51, 102, 0.00) 100%) !important;
     }
 
     .ft-header__inner {
@@ -1571,11 +1572,11 @@ img.ft-tech__card-icon {
         height: 24px;
     }
 
-    /* Reviews rotator: shows one at a time, slides up */
+    /* Reviews rotator: stars+score on top, text below, slides up */
     .ft-header__reviews {
         position: relative;
-        width: 230px;
-        height: 24px;
+        width: 200px;
+        height: 44px;
         gap: 0;
         overflow: hidden;
         flex-wrap: nowrap;
@@ -1588,15 +1589,16 @@ img.ft-tech__card-icon {
         left: 0;
         right: 0;
         bottom: 0;
-        gap: 5px;
         opacity: 0;
         transform: translateY(100%);
         transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
                     opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
+        gap: 4px 6px;
     }
 
     .ft-header__review.is-active {
@@ -1611,25 +1613,36 @@ img.ft-tech__card-icon {
 
     .ft-header__score,
     .ft-header__tp-score {
-        font-size: 12px;
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 14px;
         line-height: 1;
     }
 
+    .ft-header__stars,
+    .ft-header__tp-stars {
+        grid-column: 2;
+        grid-row: 1;
+        gap: 2px;
+    }
+
     .ft-header__review-text {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        color: #F1F8FE;
+        text-align: center;
+        font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
         font-size: 10px;
-        line-height: 1;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
         white-space: nowrap;
     }
 
     .ft-header__stars svg,
     .ft-header__tp-stars svg {
-        width: 12px !important;
-        height: 12px !important;
-    }
-
-    .ft-header__stars,
-    .ft-header__tp-stars {
-        gap: 1px;
+        width: 14px !important;
+        height: 14px !important;
     }
 
     /* ================ HERO MOBILE ================ */
@@ -1664,6 +1677,7 @@ img.ft-tech__card-icon {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover;
+        object-position: center 30%;
     }
 
     .ft-hero__video-gradient {
