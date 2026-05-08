@@ -1,5 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    /* ===== HERO VIDEO MOBILE SWAP =====
+       Use a different video source on mobile devices.
+    */
+    (function () {
+        const mobileSrc = 'https://lp.elithair.com.tr/wp-content/uploads/2026/05/video-2mp4.mp4';
+        const video = document.querySelector('.ft-hero__video');
+        if (!video) return;
+
+        const desktopSrc = video.querySelector('source')
+            ? video.querySelector('source').src
+            : video.src;
+
+        let currentMode = null;
+
+        function apply() {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const targetMode = isMobile ? 'mobile' : 'desktop';
+            if (targetMode === currentMode) return;
+            currentMode = targetMode;
+
+            const newSrc = isMobile ? mobileSrc : desktopSrc;
+            const sourceEl = video.querySelector('source');
+            if (sourceEl) {
+                sourceEl.src = newSrc;
+            } else {
+                video.src = newSrc;
+            }
+            video.load();
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(function () { /* ignore autoplay block */ });
+            }
+        }
+
+        apply();
+        window.addEventListener('resize', apply);
+    })();
+
     /* ===== HEADER REVIEWS ROTATOR (mobile only) =====
        Slides reviews vertically (one at a time), every 3s.
        Activates only on small viewports.
