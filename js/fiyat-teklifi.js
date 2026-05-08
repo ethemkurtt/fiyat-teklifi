@@ -181,4 +181,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initDragSlider('.ft-reviews__track', '.ft-reviews__card', 5000);
 
+    /* ===== TOUR LAZY LOAD ===== */
+    document.querySelectorAll('.ft-tour__embed').forEach(function (embed) {
+        const cover = embed.querySelector('.ft-tour__cover');
+        const tourUrl = embed.getAttribute('data-tour-url');
+        if (!cover || !tourUrl) return;
+
+        embed.addEventListener('click', function () {
+            if (cover.classList.contains('is-hidden')) return;
+
+            const iframe = document.createElement('iframe');
+            iframe.src = tourUrl;
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('height', '100%');
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('allow', 'vr; gyroscope; accelerometer; fullscreen');
+            embed.appendChild(iframe);
+
+            cover.classList.add('is-hidden');
+            embed.style.cursor = 'default';
+        });
+    });
+
 });
