@@ -569,14 +569,19 @@
     transform: translateY(-4px);
 }
 
-.ft-tech__card-icon {
+.ft-tech .ft-tech__card .ft-tech__card-icon,
+img.ft-tech__card-icon {
     width: 96px !important;
     height: 96px !important;
+    min-width: 96px !important;
+    min-height: 96px !important;
     max-width: 96px !important;
+    max-height: 96px !important;
     border-radius: 50% !important;
     object-fit: cover !important;
-    margin-bottom: 24px;
-    display: block;
+    margin: 0 auto 24px !important;
+    display: block !important;
+    flex-shrink: 0;
 }
 
 .ft-tech__card-title {
