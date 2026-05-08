@@ -1663,7 +1663,7 @@ img.ft-tech__card-icon {
     /* Video as full background */
     .ft-hero__video-wrap {
         position: absolute !important;
-        top: 70px !important;
+        top: 90px !important;
         left: 0 !important;
         right: 0 !important;
         bottom: 0 !important;
