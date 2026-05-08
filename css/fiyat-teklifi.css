@@ -3,6 +3,7 @@
 /* ===== ELEMENTOR OVERRIDE ===== */
 .e-con>.e-con-inner {
     margin: 0 !important;
+    max-width: 100% !important;
 }
 
 /* ===== RESET ===== */
