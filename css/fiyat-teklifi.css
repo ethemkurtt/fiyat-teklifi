@@ -418,10 +418,10 @@
 }
 
 .ft-results__card-img {
-    width: 498px;
-    height: 607px;
-    border-radius: 12px;
-    object-fit: cover;
+    width: 498px !important;
+    height: 607px !important;
+    border-radius: 12px !important;
+    object-fit: cover !important;
     display: block;
     background: lightgray 50% / cover no-repeat;
 }
