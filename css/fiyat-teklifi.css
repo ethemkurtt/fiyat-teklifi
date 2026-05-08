@@ -17,7 +17,8 @@
     right: 0 !important;
     width: 100% !important;
     z-index: 99999 !important;
-    background: #0a1e3d !important;
+    height: 96px !important;
+    background: rgba(0, 51, 102, 0.20) !important;
     transform: translateY(0);
     transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
@@ -29,7 +30,7 @@
 }
 
 .ft-header.is-scrolled {
-    background: rgba(10, 30, 61, 0.97) !important;
+    background: rgba(0, 51, 102, 0.85) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -38,7 +39,8 @@
 .ft-header__inner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 14px 36px;
+    height: 100%;
+    padding: 0 36px;
     display: flex;
     align-items: center;
     justify-content: space-between;
