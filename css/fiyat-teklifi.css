@@ -356,6 +356,161 @@
     z-index: 2;
 }
 
+/* ============================================
+   RESULTS SECTION
+   ============================================ */
+.ft-results {
+    background: #FFFFFF;
+    padding: 80px 0 60px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ft-results__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 36px;
+}
+
+.ft-results__title {
+    color: #003366;
+    text-align: center;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+
+.ft-results__title span {
+    color: #F98755;
+}
+
+/* Slider */
+.ft-results__slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ft-results__track-wrap {
+    overflow: hidden;
+    flex: 1;
+}
+
+.ft-results__track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card */
+.ft-results__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    width: calc(50% - 12px);
+}
+
+.ft-results__card-img {
+    width: 100%;
+    max-width: 498px;
+    height: 607px;
+    aspect-ratio: 32/39;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    background: lightgray 50% / cover no-repeat;
+}
+
+.ft-results__card-name {
+    color: #003366;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.ft-results__card-grafts {
+    color: #003366;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ft-results__card-time {
+    color: #003366;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Arrows */
+.ft-results__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ft-results__arrow:hover {
+    opacity: 0.6;
+}
+
+.ft-results__arrow svg {
+    display: block;
+}
+
+/* CTA */
+.ft-results__cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.ft-results__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 372px;
+    padding: 16px 32px;
+    border-radius: 12px;
+    background: #F98755;
+    color: #FEFEFE;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ft-results__cta:hover {
+    background: #e6734a;
+    transform: translateY(-2px);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
     .ft-hero__video-wrap {
@@ -471,5 +626,30 @@
 
     .ft-hero__trust-logo {
         height: 28px;
+    }
+
+    /* Results Mobile */
+    .ft-results {
+        padding: 50px 0 40px;
+    }
+
+    .ft-results__title {
+        font-size: 28px;
+    }
+
+    .ft-results__card {
+        width: 85%;
+    }
+
+    .ft-results__card-img {
+        height: 400px;
+    }
+
+    .ft-results__cta {
+        width: 100%;
+    }
+
+    .ft-results__inner {
+        padding: 0 20px;
     }
 }
