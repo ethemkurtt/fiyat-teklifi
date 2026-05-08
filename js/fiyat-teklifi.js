@@ -181,7 +181,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initDragSlider('.ft-reviews__track', '.ft-reviews__card', 5000);
 
-    /* ===== STEPS LOOP ANIMATION ===== */
+    /* ===== STEPS LOOP ANIMATION =====
+       Sequence per step:
+       1. Activate item (icon + circle smoothly fade to dark)
+       2. Wait for icon animation
+       3. Fill the next line gradually (1.4s)
+       4. When line filled → activate next item
+       5. After last item, pause then reset and loop
+    */
     (function () {
         const track = document.querySelector('.ft-steps__track');
         if (!track) return;
@@ -190,37 +197,64 @@ document.addEventListener('DOMContentLoaded', function () {
         const lines = track.querySelectorAll('.ft-steps__line');
         if (!items.length) return;
 
-        let activeUntil = 0;
-        const stepMs = 1000;
-        const pauseMs = 1500;
+        const iconMs = 700;   /* circle + icon fade in */
+        const lineMs = 1400;  /* line fill duration (matches CSS) */
+        const endPauseMs = 1800;
 
-        function render() {
-            items.forEach(function (item, i) {
-                if (i <= activeUntil) {
-                    item.classList.add('is-active');
-                } else {
-                    item.classList.remove('is-active');
-                }
-            });
-            lines.forEach(function (line, i) {
-                if (i < activeUntil) {
-                    line.classList.add('is-active');
-                } else {
-                    line.classList.remove('is-active');
-                }
+        let stopped = false;
+
+        function reset() {
+            items.forEach(function (item) { item.classList.remove('is-active'); });
+            lines.forEach(function (line) {
+                line.classList.remove('is-filling');
+                line.classList.remove('is-filled');
+                /* force reflow so transition restarts */
+                void line.offsetWidth;
             });
         }
 
-        function tick() {
-            render();
-            if (activeUntil >= items.length - 1) {
-                setTimeout(function () { activeUntil = 0; tick(); }, pauseMs);
-            } else {
-                setTimeout(function () { activeUntil++; tick(); }, stepMs);
-            }
+        function activateItem(i) {
+            if (items[i]) items[i].classList.add('is-active');
         }
 
-        tick();
+        function fillLine(i, cb) {
+            const line = lines[i];
+            if (!line) { cb(); return; }
+            line.classList.add('is-filling');
+            setTimeout(function () {
+                line.classList.add('is-filled');
+                cb();
+            }, lineMs);
+        }
+
+        function runSequence() {
+            if (stopped) return;
+            reset();
+
+            /* Step 0 instantly active */
+            setTimeout(function () {
+                activateItem(0);
+
+                let i = 0;
+                function nextStep() {
+                    if (i >= lines.length) {
+                        /* end of sequence - pause then loop */
+                        setTimeout(runSequence, endPauseMs);
+                        return;
+                    }
+                    /* fill line, then activate next item after icon delay */
+                    fillLine(i, function () {
+                        activateItem(i + 1);
+                        i++;
+                        setTimeout(nextStep, iconMs);
+                    });
+                }
+
+                setTimeout(nextStep, iconMs);
+            }, 100);
+        }
+
+        runSequence();
     })();
 
     /* ===== CLOUDPANO TOUR RELOADER =====
