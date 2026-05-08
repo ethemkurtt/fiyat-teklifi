@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let current = 0;
         let autoTimer = null;
+        let isDown = false;
         let isDragging = false;
         let startX = 0;
         let dragOffset = 0;
@@ -72,9 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const wrap = track.parentElement;
             if (!wrap) return 0;
             const wrapWidth = wrap.offsetWidth;
-            const totalWidth = track.scrollWidth;
             const step = getStep();
-            const visible = Math.floor(wrapWidth / step) || 1;
+            const visible = Math.max(1, Math.floor(wrapWidth / step));
             return Math.max(0, cards.length - visible);
         }
 
@@ -99,56 +99,73 @@ document.addEventListener('DOMContentLoaded', function () {
             if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
         }
 
-        /* --- Drag (mouse + touch) --- */
+        function getX(e) {
+            return e.touches && e.touches[0] ? e.touches[0].clientX : e.clientX;
+        }
+
+        /* --- Drag --- */
         function dragStart(e) {
-            isDragging = true;
-            startX = e.type.indexOf('touch') === 0 ? e.touches[0].clientX : e.clientX;
+            isDown = true;
+            isDragging = false;
+            startX = getX(e);
             const m = track.style.transform.match(/-?\d+(\.\d+)?/);
             baseTransform = m ? parseFloat(m[0]) : 0;
-            track.style.transition = 'none';
-            track.style.cursor = 'grabbing';
             stopAuto();
         }
 
         function dragMove(e) {
-            if (!isDragging) return;
-            const x = e.type.indexOf('touch') === 0 ? e.touches[0].clientX : e.clientX;
+            if (!isDown) return;
+            const x = getX(e);
             dragOffset = x - startX;
-            track.style.transform = 'translateX(' + (baseTransform + dragOffset) + 'px)';
+
+            if (Math.abs(dragOffset) > 5) {
+                isDragging = true;
+                track.classList.add('is-dragging');
+                track.style.transition = 'none';
+                track.style.transform = 'translateX(' + (baseTransform + dragOffset) + 'px)';
+                if (e.cancelable && e.type.indexOf('touch') !== 0) e.preventDefault();
+            }
         }
 
         function dragEnd() {
-            if (!isDragging) return;
-            isDragging = false;
-            track.style.cursor = 'grab';
+            if (!isDown) return;
+            isDown = false;
+            track.classList.remove('is-dragging');
             track.style.transition = '';
 
-            const step = getStep();
-            const max = getMaxIndex();
-            const threshold = step * 0.2;
+            if (isDragging) {
+                const step = getStep();
+                const max = getMaxIndex();
+                const threshold = step * 0.15;
 
-            if (dragOffset < -threshold && current < max) {
-                current++;
-            } else if (dragOffset > threshold && current > 0) {
-                current--;
+                if (dragOffset < -threshold && current < max) {
+                    current++;
+                } else if (dragOffset > threshold && current > 0) {
+                    current--;
+                }
             }
             dragOffset = 0;
+            isDragging = false;
             update();
             startAuto();
         }
 
-        track.style.cursor = 'grab';
-        track.addEventListener('mousedown', dragStart);
-        track.addEventListener('touchstart', dragStart, { passive: true });
-        document.addEventListener('mousemove', dragMove);
-        document.addEventListener('touchmove', dragMove, { passive: true });
-        document.addEventListener('mouseup', dragEnd);
-        document.addEventListener('touchend', dragEnd);
-
-        /* prevent image drag ghost */
-        track.querySelectorAll('img').forEach(function (img) {
-            img.addEventListener('dragstart', function (ev) { ev.preventDefault(); });
+        track.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            dragStart(e);
         });
+        track.addEventListener('touchstart', dragStart, { passive: true });
+
+        document.addEventListener('mousemove', dragMove);
+        document.addEventListener('touchmove', dragMove, { passive: false });
+
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('mouseleave', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+        document.addEventListener('touchcancel', dragEnd);
+
+        /* prevent native image/text drag */
+        track.addEventListener('dragstart', function (ev) { ev.preventDefault(); });
 
         /* pause on hover */
         const wrap = track.parentElement;

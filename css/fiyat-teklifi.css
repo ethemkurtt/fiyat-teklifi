@@ -523,7 +523,7 @@
 .ft-reviews__inner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 96px;
+    padding: 0 0 0 96px;
 }
 
 .ft-reviews__title {
@@ -549,6 +549,21 @@
 .ft-reviews__track {
     display: flex;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    touch-action: pan-y;
+}
+
+.ft-reviews__track.is-dragging {
+    cursor: grabbing;
+}
+
+.ft-reviews__track img {
+    pointer-events: none;
+    -webkit-user-drag: none;
 }
 
 /* Card - 3.5 visible (4th peeks half), divider between */
