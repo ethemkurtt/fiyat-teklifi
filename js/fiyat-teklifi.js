@@ -19,39 +19,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ===== RESULTS SLIDER ===== */
-    const track = document.querySelector('.ft-results__track');
-    const prevBtn = document.querySelector('.ft-results__prev');
-    const nextBtn = document.querySelector('.ft-results__next');
+    /* ===== GENERIC SLIDER FACTORY ===== */
+    function initSlider(trackSel, prevSel, nextSel, cardSel, visibleCards, gap) {
+        const track = document.querySelector(trackSel);
+        const prevBtn = document.querySelector(prevSel);
+        const nextBtn = document.querySelector(nextSel);
+        if (!track || !prevBtn || !nextBtn) return;
 
-    if (track && prevBtn && nextBtn) {
-        const cards = track.querySelectorAll('.ft-results__card');
+        const cards = track.querySelectorAll(cardSel);
         let current = 0;
-        const visibleCards = 2;
         const maxIndex = Math.max(0, cards.length - visibleCards);
 
-        function updateSlider() {
+        function update() {
             const card = cards[0];
-            const gap = 24;
+            if (!card) return;
             const cardWidth = card.offsetWidth + gap;
             track.style.transform = 'translateX(-' + (current * cardWidth) + 'px)';
         }
 
         nextBtn.addEventListener('click', function () {
-            if (current < maxIndex) {
-                current++;
-                updateSlider();
-            }
+            if (current < maxIndex) { current++; update(); }
         });
 
         prevBtn.addEventListener('click', function () {
-            if (current > 0) {
-                current--;
-                updateSlider();
-            }
+            if (current > 0) { current--; update(); }
         });
 
-        window.addEventListener('resize', updateSlider);
+        window.addEventListener('resize', update);
     }
+
+    /* ===== RESULTS SLIDER ===== */
+    initSlider('.ft-results__track', '.ft-results__prev', '.ft-results__next', '.ft-results__card', 2, 24);
+
+    /* ===== REVIEWS SLIDER ===== */
+    initSlider('.ft-reviews__track', '.ft-reviews__prev', '.ft-reviews__next', '.ft-reviews__card', 4, 24);
 
 });

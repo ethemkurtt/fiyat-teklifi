@@ -510,6 +510,187 @@
     transform: translateY(-2px);
 }
 
+/* ============================================
+   REVIEWS SECTION
+   ============================================ */
+.ft-reviews {
+    background: #FFFFFF;
+    padding: 80px 0 80px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ft-reviews__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 36px;
+}
+
+.ft-reviews__title {
+    color: #003366;
+    text-align: center;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+
+/* Slider */
+.ft-reviews__slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ft-reviews__track-wrap {
+    overflow: hidden;
+    flex: 1;
+}
+
+.ft-reviews__track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card */
+.ft-reviews__card {
+    flex-shrink: 0;
+    width: calc((100% - 72px) / 4);
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Card Header (photo + name + flag) */
+.ft-reviews__card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ft-reviews__card-photo {
+    width: 36px !important;
+    height: 36px !important;
+    max-width: 36px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    flex-shrink: 0;
+}
+
+.ft-reviews__card-name {
+    color: #003366;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ft-reviews__card-flag {
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Stars */
+.ft-reviews__card-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.ft-reviews__card-stars svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Description */
+.ft-reviews__card-text {
+    color: #333333;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Posted On */
+.ft-reviews__card-posted {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 8px;
+}
+
+.ft-reviews__card-posted-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.ft-reviews__card-posted-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ft-reviews__card-posted-label {
+    color: #666666;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.ft-reviews__card-posted-link {
+    color: #4285F4;
+    font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.ft-reviews__card-posted-link:hover {
+    text-decoration: underline;
+}
+
+/* Arrows */
+.ft-reviews__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ft-reviews__arrow:hover {
+    opacity: 0.6;
+}
+
+.ft-reviews__arrow svg {
+    display: block;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1200px) {
     .ft-hero__video-wrap {
@@ -650,5 +831,28 @@
 
     .ft-results__inner {
         padding: 0 20px;
+    }
+
+    /* Reviews Mobile */
+    .ft-reviews {
+        padding: 50px 0 50px;
+    }
+
+    .ft-reviews__inner {
+        padding: 0 20px;
+    }
+
+    .ft-reviews__title {
+        font-size: 24px;
+    }
+
+    .ft-reviews__card {
+        width: 85%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    .ft-reviews__card {
+        width: calc((100% - 48px) / 3);
     }
 }
