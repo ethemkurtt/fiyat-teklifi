@@ -511,6 +511,155 @@
 }
 
 /* ============================================
+   FAQ SECTION (Sıkça Sorulan Sorular)
+   ============================================ */
+.ek-faq {
+    background: #FFFFFF !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 80px 36px !important;
+    box-sizing: border-box !important;
+    z-index: 1;
+}
+
+.ek-faq__inner {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.ek-faq__title {
+    font-family: 'Sofia Pro', 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #1a1a1a;
+    text-align: center;
+    margin: 0;
+}
+
+.ek-faq__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.ek-faq__item {
+    border-top: 1px solid #E0E0E0;
+}
+
+.ek-faq__item:first-child {
+    border-top: none;
+}
+
+.ek-faq__question {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+}
+
+.ek-faq__question-text {
+    font-family: 'Sofia Pro', 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    color: #003366;
+}
+
+.ek-faq__icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+    position: relative;
+}
+
+.ek-faq__icon-plus,
+.ek-faq__icon-minus {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 36px !important;
+    object-fit: contain;
+}
+
+.ek-faq__icon-plus { display: block; }
+.ek-faq__icon-minus { display: none; }
+
+.ek-faq__item.active .ek-faq__icon-plus { display: none; }
+.ek-faq__item.active .ek-faq__icon-minus { display: block; }
+
+.ek-faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.ek-faq__answer-inner {
+    padding: 0 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ek-faq__answer-text {
+    font-family: 'Sofia Pro', 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #555555;
+    margin: 0;
+}
+
+.ek-faq__answer-text strong {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.ek-faq__answer-cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    width: fit-content;
+    background: #F98755;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Sofia Pro', 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FEFEFE;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.ek-faq__answer-cta:hover {
+    background: #e0743f;
+}
+
+@media (max-width: 768px) {
+    .ek-faq { padding: 48px 20px !important; }
+    .ek-faq__title { font-size: 28px; line-height: 36px; }
+    .ek-faq__question-text { font-size: 16px; line-height: 24px; }
+    .ek-faq__icon { width: 32px; height: 32px; min-width: 32px; }
+}
+
+/* ============================================
    STEPS (İstanbul'a Adım Attığınızda Her Şey Hazır) SECTION
    ============================================ */
 .ft-steps {
