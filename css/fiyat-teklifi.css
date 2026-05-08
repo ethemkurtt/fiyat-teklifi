@@ -6,6 +6,10 @@
     max-width: 100% !important;
 }
 
+.elementor-element.e-con {
+    padding: 0 !important;
+}
+
 /* ===== RESET ===== */
 .ft-header *,
 .ft-header *::before,
@@ -137,7 +141,7 @@
    ============================================ */
 .ft-hero {
     position: relative;
-    top: 0;
+    top: 0 !important;
     width: 100%;
     height: 706px;
     background: #003366;
@@ -162,7 +166,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 96px 0 60px 36px;
+    padding: 190px 0 60px 36px;
     max-width: 700px;
 }
 
@@ -231,7 +235,7 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 32px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .ft-hero__feature {
@@ -273,7 +277,7 @@
     justify-content: center;
     width: 372px;
     padding: 16px 32px;
-    border-radius: 50px;
+    border-radius: 12px;
     background: #F98755;
     color: #FEFEFE;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
@@ -284,7 +288,6 @@
     border: none;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 20px rgba(249, 135, 85, 0.35);
 }
 
 .ft-hero__cta:hover {
@@ -327,8 +330,9 @@
     top: 0;
     right: 0;
     width: 496px;
-    height: 100%;
+    height: 864px;
     z-index: 1;
+    margin-top: 50px;
 }
 
 .ft-hero__video {

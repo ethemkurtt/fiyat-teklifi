@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const header = document.querySelector('.ft-header');
     if (!header) return;
 
-    let lastScroll = 0;
     let ticking = false;
 
     window.addEventListener('scroll', function () {
@@ -16,13 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     header.classList.remove('is-scrolled');
                 }
 
-                if (currentScroll > lastScroll && currentScroll > 200) {
-                    header.classList.add('is-hidden');
-                } else {
-                    header.classList.remove('is-hidden');
-                }
-
-                lastScroll = currentScroll;
                 ticking = false;
             });
             ticking = true;
