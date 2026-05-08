@@ -523,7 +523,7 @@
 .ft-reviews__inner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 36px;
+    padding: 0 0 0 96px;
 }
 
 .ft-reviews__title {
