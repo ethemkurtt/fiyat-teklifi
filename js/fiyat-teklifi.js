@@ -1,5 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    /* ===== HEADER REVIEWS ROTATOR (mobile only) =====
+       Slides reviews vertically (one at a time), every 3s.
+       Activates only on small viewports.
+    */
+    (function () {
+        const wrap = document.querySelector('.ft-header__reviews');
+        if (!wrap) return;
+        const items = wrap.querySelectorAll('.ft-header__review');
+        if (items.length < 2) return;
+
+        let active = -1;
+        let timer = null;
+
+        function show(idx) {
+            items.forEach(function (it, i) {
+                it.classList.remove('is-active');
+                it.classList.remove('is-leaving');
+            });
+            if (active >= 0 && active !== idx) {
+                items[active].classList.add('is-leaving');
+            }
+            items[idx].classList.add('is-active');
+            active = idx;
+        }
+
+        function rotate() {
+            const next = (active + 1) % items.length;
+            show(next);
+        }
+
+        function start() {
+            if (timer) return;
+            show(0);
+            timer = setInterval(rotate, 3000);
+        }
+
+        function stop() {
+            if (timer) { clearInterval(timer); timer = null; }
+            items.forEach(function (it) {
+                it.classList.remove('is-active');
+                it.classList.remove('is-leaving');
+            });
+            active = -1;
+        }
+
+        function check() {
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                start();
+            } else {
+                stop();
+            }
+        }
+
+        check();
+        window.addEventListener('resize', check);
+    })();
+
     /* ===== HEADER SCROLL ===== */
     const header = document.querySelector('.ft-header');
     if (header) {

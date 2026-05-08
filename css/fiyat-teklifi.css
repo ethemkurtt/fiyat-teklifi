@@ -1546,112 +1546,214 @@ img.ft-tech__card-icon {
 }
 
 @media (max-width: 768px) {
-    /* Header Mobile */
+    /* ================ HEADER MOBILE ================ */
+    .ft-header {
+        height: 64px !important;
+    }
+
     .ft-header__inner {
-        padding: 12px 16px;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        padding: 0 16px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 12px;
+        height: 100%;
     }
 
     .ft-header__logo {
-        width: 100%;
-        justify-content: center;
+        width: auto;
+        justify-content: flex-start;
+        flex-shrink: 0;
     }
 
     .ft-header__logo img {
-        height: 26px;
+        height: 24px;
     }
 
+    /* Reviews rotator: shows one at a time, slides up */
     .ft-header__reviews {
-        gap: 16px;
-        flex-wrap: wrap;
-        justify-content: center;
+        position: relative;
+        width: 200px;
+        height: 32px;
+        gap: 0;
+        overflow: hidden;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
     }
 
     .ft-header__review {
-        gap: 5px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 32px;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(100%);
+        transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .ft-header__review-line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1;
+    }
+
+    .ft-header__review.is-active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .ft-header__review.is-leaving {
+        opacity: 0;
+        transform: translateY(-100%);
     }
 
     .ft-header__score,
     .ft-header__tp-score {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .ft-header__review-text {
-        font-size: 11px;
+        font-size: 10px;
+        line-height: 1.2;
     }
 
-    .ft-header__stars svg {
-        width: 16px;
-        height: 16px;
-    }
-
+    .ft-header__stars svg,
     .ft-header__tp-stars svg {
-        width: 16px;
-        height: 16px;
+        width: 12px !important;
+        height: 12px !important;
     }
 
-    /* Hero Mobile */
+    .ft-header__stars,
+    .ft-header__tp-stars {
+        gap: 1px;
+    }
+
+    /* ================ HERO MOBILE ================ */
     .ft-hero {
-        height: auto;
-        min-height: 100vh;
+        height: auto !important;
+        min-height: 600px;
+        position: relative;
+        overflow: hidden;
     }
 
     .ft-hero__inner {
-        flex-direction: column-reverse;
+        position: relative;
+        flex-direction: column;
+        height: auto;
+        min-height: 600px;
     }
 
+    /* Video as full background */
+    .ft-hero__video-wrap {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        z-index: 1;
+    }
+
+    .ft-hero__video {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+    }
+
+    .ft-hero__video-gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0, 51, 102, 0.55) 0%, rgba(0, 51, 102, 0.85) 100%);
+        z-index: 2;
+    }
+
+    /* Content over video */
     .ft-hero__left {
-        padding: 30px 20px 40px;
+        position: relative;
+        z-index: 3;
+        padding: 110px 20px 32px;
         max-width: 100%;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        justify-content: flex-start;
+    }
+
+    .ft-hero__badge {
+        display: none;
+    }
+
+    .ft-hero__title {
+        margin-bottom: 24px;
     }
 
     .ft-hero__title-white,
     .ft-hero__title-orange {
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 28px;
+        line-height: 36px;
+        text-align: center;
     }
 
     .ft-hero__features {
-        gap: 12px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+    }
+
+    .ft-hero__feature {
+        justify-content: center;
+        gap: 8px;
     }
 
     .ft-hero__feature-bold,
     .ft-hero__feature-normal {
-        font-size: 13px;
+        font-size: 14px;
+        color: #FEFEFE;
     }
 
     .ft-hero__cta {
         width: 100%;
-    }
-
-    .ft-hero__video-wrap {
-        position: relative;
-        width: 100%;
-        height: 300px;
-    }
-
-    .ft-hero__video-gradient {
-        width: 100%;
-        height: 80px;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        background: linear-gradient(0deg, #003366 0%, rgba(0, 51, 102, 0.00) 100%);
+        max-width: 360px;
+        margin: 0 auto;
     }
 
     .ft-hero__trust {
-        gap: 16px;
-        flex-wrap: wrap;
+        margin-top: 28px;
+        padding-top: 0;
+        gap: 14px;
+        flex-wrap: nowrap;
         justify-content: center;
+        align-items: center;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .ft-hero__trust::-webkit-scrollbar {
+        display: none;
     }
 
     .ft-hero__trust-logo {
-        height: 28px;
+        height: 24px !important;
+        max-height: 24px !important;
+        flex-shrink: 0;
     }
 
-    /* Results Mobile */
+    /* ================ RESULTS MOBILE ================ */
     .ft-results {
         padding: 50px 0 40px;
     }
@@ -1665,7 +1767,7 @@ img.ft-tech__card-icon {
     }
 
     .ft-results__card-img {
-        height: 400px;
+        height: 400px !important;
     }
 
     .ft-results__cta {
@@ -1676,17 +1778,22 @@ img.ft-tech__card-icon {
         padding: 0 20px;
     }
 
-    /* Reviews Mobile */
+    /* ================ REVIEWS MOBILE ================ */
     .ft-reviews {
         padding: 50px 0 50px;
     }
 
     .ft-reviews__inner {
-        padding: 0 20px;
+        padding: 0;
     }
 
     .ft-reviews__title {
         font-size: 24px;
+        padding: 0 20px;
+    }
+
+    .ft-reviews__slider {
+        padding-left: 20px;
     }
 
     .ft-reviews__card {
