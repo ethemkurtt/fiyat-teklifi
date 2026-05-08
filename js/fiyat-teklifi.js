@@ -182,12 +182,8 @@ document.addEventListener('DOMContentLoaded', function () {
     initDragSlider('.ft-reviews__track', '.ft-reviews__card', 5000);
 
     /* ===== STEPS LOOP ANIMATION =====
-       Sequence per step:
-       1. Activate item (icon + circle smoothly fade to dark)
-       2. Wait for icon animation
-       3. Fill the next line gradually (1.4s)
-       4. When line filled → activate next item
-       5. After last item, pause then reset and loop
+       Forward: each line fills (0.9s), then next item activates (0.45s fade)
+       Reverse: each line empties one by one (0.25s) and item deactivates
     */
     (function () {
         const track = document.querySelector('.ft-steps__track');
@@ -197,18 +193,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const lines = track.querySelectorAll('.ft-steps__line');
         if (!items.length) return;
 
-        const iconMs = 700;   /* circle + icon fade in */
-        const lineMs = 1400;  /* line fill duration (matches CSS) */
-        const endPauseMs = 1800;
+        const iconMs = 450;       /* fade between icons */
+        const lineMs = 900;       /* fill duration (matches CSS) */
+        const resetStepMs = 280;  /* reverse step delay (matches CSS empty 0.25s) */
+        const endPauseMs = 1200;
+        const startPauseMs = 400;
 
-        let stopped = false;
-
-        function reset() {
+        function clearAll() {
             items.forEach(function (item) { item.classList.remove('is-active'); });
             lines.forEach(function (line) {
                 line.classList.remove('is-filling');
                 line.classList.remove('is-filled');
-                /* force reflow so transition restarts */
+                line.classList.remove('is-emptying');
                 void line.offsetWidth;
             });
         }
@@ -227,34 +223,52 @@ document.addEventListener('DOMContentLoaded', function () {
             }, lineMs);
         }
 
-        function runSequence() {
-            if (stopped) return;
-            reset();
-
-            /* Step 0 instantly active */
-            setTimeout(function () {
-                activateItem(0);
-
-                let i = 0;
-                function nextStep() {
-                    if (i >= lines.length) {
-                        /* end of sequence - pause then loop */
-                        setTimeout(runSequence, endPauseMs);
-                        return;
-                    }
-                    /* fill line, then activate next item after icon delay */
-                    fillLine(i, function () {
-                        activateItem(i + 1);
-                        i++;
-                        setTimeout(nextStep, iconMs);
-                    });
-                }
-
-                setTimeout(nextStep, iconMs);
-            }, 100);
+        /* runForward: 0 -> last */
+        function runForward(done) {
+            activateItem(0);
+            let i = 0;
+            function step() {
+                if (i >= lines.length) { done(); return; }
+                fillLine(i, function () {
+                    activateItem(i + 1);
+                    i++;
+                    setTimeout(step, iconMs);
+                });
+            }
+            setTimeout(step, iconMs);
         }
 
-        runSequence();
+        /* runReverse: empty lines + deactivate items one by one (right to left) */
+        function runReverse(done) {
+            let i = items.length - 1;
+            function step() {
+                if (i < 0) { done(); return; }
+                if (items[i]) items[i].classList.remove('is-active');
+                if (i > 0 && lines[i - 1]) {
+                    lines[i - 1].classList.remove('is-filled');
+                    lines[i - 1].classList.remove('is-filling');
+                    lines[i - 1].classList.add('is-emptying');
+                }
+                i--;
+                setTimeout(step, resetStepMs);
+            }
+            step();
+        }
+
+        function loop() {
+            clearAll();
+            setTimeout(function () {
+                runForward(function () {
+                    setTimeout(function () {
+                        runReverse(function () {
+                            setTimeout(loop, 200);
+                        });
+                    }, endPauseMs);
+                });
+            }, startPauseMs);
+        }
+
+        loop();
     })();
 
     /* ===== CLOUDPANO TOUR RELOADER =====
