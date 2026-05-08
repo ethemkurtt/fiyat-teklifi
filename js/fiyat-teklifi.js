@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
        Use a different video source on mobile devices.
     */
     (function () {
-        const mobileSrc = 'https://lp.elithair.com.tr/wp-content/uploads/2026/05/video-2mp4.mp4';
+        const mobileSrc = 'https://lp.elithair.com.tr/wp-content/uploads/2026/05/video3.mp4';
         const video = document.querySelector('.ft-hero__video');
         if (!video) return;
 
