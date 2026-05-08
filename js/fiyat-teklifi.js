@@ -181,6 +181,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initDragSlider('.ft-reviews__track', '.ft-reviews__card', 5000);
 
+    /* ===== STEPS LOOP ANIMATION ===== */
+    (function () {
+        const track = document.querySelector('.ft-steps__track');
+        if (!track) return;
+
+        const items = track.querySelectorAll('.ft-steps__item');
+        const lines = track.querySelectorAll('.ft-steps__line');
+        if (!items.length) return;
+
+        let activeUntil = 0;
+        const stepMs = 1000;
+        const pauseMs = 1500;
+
+        function render() {
+            items.forEach(function (item, i) {
+                if (i <= activeUntil) {
+                    item.classList.add('is-active');
+                } else {
+                    item.classList.remove('is-active');
+                }
+            });
+            lines.forEach(function (line, i) {
+                if (i < activeUntil) {
+                    line.classList.add('is-active');
+                } else {
+                    line.classList.remove('is-active');
+                }
+            });
+        }
+
+        function tick() {
+            render();
+            if (activeUntil >= items.length - 1) {
+                setTimeout(function () { activeUntil = 0; tick(); }, pauseMs);
+            } else {
+                setTimeout(function () { activeUntil++; tick(); }, stepMs);
+            }
+        }
+
+        tick();
+    })();
+
     /* ===== CLOUDPANO TOUR RELOADER =====
        Forces the shareScript.js to re-execute on each page load
        so the tour reliably initializes (Elementor cache fix).
