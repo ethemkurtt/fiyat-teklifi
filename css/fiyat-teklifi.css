@@ -283,8 +283,8 @@
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #003366;
-    color: #FFFFFF;
+    background: #F98755;
+    color: #FEFEFE;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -292,11 +292,12 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .ft-hero__cta:hover {
-    background: #002244;
+    background: #003366;
+    color: #FFFFFF;
     transform: translateY(-2px);
     box-shadow: 0 6px 28px rgba(0, 51, 102, 0.4);
 }
@@ -493,8 +494,8 @@
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #003366;
-    color: #FFFFFF;
+    background: #F98755;
+    color: #FEFEFE;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -502,11 +503,12 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .ft-results__cta:hover {
-    background: #002244;
+    background: #003366;
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
@@ -982,20 +984,21 @@
     align-items: center;
     padding: 12px 24px;
     width: fit-content;
-    background: #003366;
+    background: #F98755;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Sofia Pro', 'Mulish', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #FEFEFE;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 
 .ek-faq__answer-cta:hover {
-    background: #002244;
+    background: #003366;
+    color: #FFFFFF;
 }
 
 @media (max-width: 768px) {
@@ -1308,8 +1311,8 @@ img.ft-tech__card-icon {
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #003366;
-    color: #FFFFFF;
+    background: #F98755;
+    color: #FEFEFE;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -1317,11 +1320,12 @@ img.ft-tech__card-icon {
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
 .ft-tech__cta:hover {
-    background: #002244;
+    background: #003366;
+    color: #FFFFFF;
     transform: translateY(-2px);
 }
 
