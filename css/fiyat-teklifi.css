@@ -283,8 +283,8 @@
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #F98755;
-    color: #FEFEFE;
+    background: #003366;
+    color: #FFFFFF;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -296,9 +296,9 @@
 }
 
 .ft-hero__cta:hover {
-    background: #e6734a;
+    background: #002244;
     transform: translateY(-2px);
-    box-shadow: 0 6px 28px rgba(249, 135, 85, 0.5);
+    box-shadow: 0 6px 28px rgba(0, 51, 102, 0.4);
 }
 
 .ft-hero__cta:active {
@@ -493,8 +493,8 @@
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #F98755;
-    color: #FEFEFE;
+    background: #003366;
+    color: #FFFFFF;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -506,7 +506,7 @@
 }
 
 .ft-results__cta:hover {
-    background: #e6734a;
+    background: #002244;
     transform: translateY(-2px);
 }
 
@@ -982,20 +982,20 @@
     align-items: center;
     padding: 12px 24px;
     width: fit-content;
-    background: #F98755;
+    background: #003366;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Sofia Pro', 'Mulish', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: #FEFEFE;
+    color: #FFFFFF;
     text-decoration: none;
     transition: background 0.2s;
 }
 
 .ek-faq__answer-cta:hover {
-    background: #e0743f;
+    background: #002244;
 }
 
 @media (max-width: 768px) {
@@ -1308,8 +1308,8 @@ img.ft-tech__card-icon {
     width: 372px;
     padding: 16px 32px;
     border-radius: 12px;
-    background: #F98755;
-    color: #FEFEFE;
+    background: #003366;
+    color: #FFFFFF;
     font-family: "Sofia Pro", 'Plus Jakarta Sans', sans-serif;
     font-size: 18px;
     font-weight: 700;
@@ -1321,7 +1321,7 @@ img.ft-tech__card-icon {
 }
 
 .ft-tech__cta:hover {
-    background: #e6734a;
+    background: #002244;
     transform: translateY(-2px);
 }
 
@@ -1870,20 +1870,6 @@ img.ft-tech__card-icon {
         max-height: 28px !important;
         width: auto !important;
         flex-shrink: 0;
-    }
-
-    /* ================ CTA BUTTONS MOBILE: blue bg, white text ================ */
-    .ft-hero__cta,
-    .ft-results__cta,
-    .ft-tech__cta {
-        background: #003366 !important;
-        color: #FFFFFF !important;
-    }
-
-    .ft-hero__cta:hover,
-    .ft-results__cta:hover,
-    .ft-tech__cta:hover {
-        background: #002244 !important;
     }
 
     /* ================ RESULTS MOBILE ================ */
