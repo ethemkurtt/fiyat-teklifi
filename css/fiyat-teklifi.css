@@ -1053,10 +1053,12 @@
     .ft-steps__track {
         flex-direction: column;
         gap: 0;
-        align-items: center;
+        align-items: flex-start;
+        width: 280px;
+        margin: 0 auto;
     }
     .ft-steps__item {
-        width: 280px;
+        width: 100%;
         flex-direction: row;
         gap: 16px;
         align-items: center;
@@ -1068,13 +1070,15 @@
         text-align: left;
         flex: 1;
     }
+    /* Lines vertical, aligned with icon center (icon 48px, so 23px from left) */
     .ft-steps__line {
         width: 2px;
         height: 36px;
         min-width: 0;
         min-height: 36px;
-        margin: 0;
+        margin: 0 0 0 23px;
         flex: 0 0 auto;
+        align-self: flex-start;
     }
     .ft-steps__line::after {
         width: 100%;
