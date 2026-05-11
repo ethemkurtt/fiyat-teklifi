@@ -1778,24 +1778,49 @@ img.ft-tech__card-icon {
         padding: 50px 0 40px;
     }
 
+    .ft-results__inner {
+        padding: 0 12px;
+    }
+
     .ft-results__title {
         font-size: 28px;
     }
 
+    .ft-results__slider {
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ft-results__track-wrap {
+        flex: 0 1 267px;
+    }
+
     .ft-results__card {
-        width: 85%;
+        width: 267px !important;
+        flex-shrink: 0;
+        gap: 8px;
     }
 
     .ft-results__card-img {
-        height: 400px !important;
+        width: 267px !important;
+        max-width: 267px !important;
+        height: 325px !important;
+    }
+
+    .ft-results__arrow {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+    }
+
+    .ft-results__arrow svg {
+        width: 36px !important;
+        height: 36px !important;
     }
 
     .ft-results__cta {
         width: 100%;
-    }
-
-    .ft-results__inner {
-        padding: 0 20px;
     }
 
     /* ================ REVIEWS MOBILE ================ */
