@@ -1872,6 +1872,20 @@ img.ft-tech__card-icon {
         flex-shrink: 0;
     }
 
+    /* ================ CTA BUTTONS MOBILE: blue bg, white text ================ */
+    .ft-hero__cta,
+    .ft-results__cta,
+    .ft-tech__cta {
+        background: #003366 !important;
+        color: #FFFFFF !important;
+    }
+
+    .ft-hero__cta:hover,
+    .ft-results__cta:hover,
+    .ft-tech__cta:hover {
+        background: #002244 !important;
+    }
+
     /* ================ RESULTS MOBILE ================ */
     .ft-results {
         padding: 50px 0 40px;

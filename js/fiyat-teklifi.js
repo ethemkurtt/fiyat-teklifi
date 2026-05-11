@@ -328,24 +328,36 @@ document.addEventListener('DOMContentLoaded', function () {
     })();
 
     /* ===== STEPS LOOP ANIMATION =====
-       Forward: each line fills (0.9s), then next item activates (0.45s fade)
-       Reverse: each line empties one by one (0.25s) and item deactivates
+       Only runs while the section is in viewport.
+       Restarts from step 1 each time the section becomes visible.
     */
     (function () {
+        const section = document.querySelector('.ft-steps');
         const track = document.querySelector('.ft-steps__track');
-        if (!track) return;
+        if (!track || !section) return;
 
         const items = track.querySelectorAll('.ft-steps__item');
         const lines = track.querySelectorAll('.ft-steps__line');
         if (!items.length) return;
 
-        const iconMs = 450;       /* fade between icons */
-        const lineMs = 900;       /* fill duration (matches CSS) */
-        const resetStepMs = 280;  /* reverse step delay (matches CSS empty 0.25s) */
+        const iconMs = 450;
+        const lineMs = 900;
+        const resetStepMs = 280;
         const endPauseMs = 1200;
         const startPauseMs = 400;
 
+        let timeouts = [];
+        let isRunning = false;
+
+        function schedule(fn, ms) {
+            const t = setTimeout(fn, ms);
+            timeouts.push(t);
+            return t;
+        }
+
         function clearAll() {
+            timeouts.forEach(clearTimeout);
+            timeouts = [];
             items.forEach(function (item) { item.classList.remove('is-active'); });
             lines.forEach(function (line) {
                 line.classList.remove('is-filling');
@@ -363,31 +375,32 @@ document.addEventListener('DOMContentLoaded', function () {
             const line = lines[i];
             if (!line) { cb(); return; }
             line.classList.add('is-filling');
-            setTimeout(function () {
+            schedule(function () {
                 line.classList.add('is-filled');
                 cb();
             }, lineMs);
         }
 
-        /* runForward: 0 -> last */
         function runForward(done) {
             activateItem(0);
             let i = 0;
             function step() {
+                if (!isRunning) return;
                 if (i >= lines.length) { done(); return; }
                 fillLine(i, function () {
+                    if (!isRunning) return;
                     activateItem(i + 1);
                     i++;
-                    setTimeout(step, iconMs);
+                    schedule(step, iconMs);
                 });
             }
-            setTimeout(step, iconMs);
+            schedule(step, iconMs);
         }
 
-        /* runReverse: empty lines + deactivate items one by one (right to left) */
         function runReverse(done) {
             let i = items.length - 1;
             function step() {
+                if (!isRunning) return;
                 if (i < 0) { done(); return; }
                 if (items[i]) items[i].classList.remove('is-active');
                 if (i > 0 && lines[i - 1]) {
@@ -396,25 +409,52 @@ document.addEventListener('DOMContentLoaded', function () {
                     lines[i - 1].classList.add('is-emptying');
                 }
                 i--;
-                setTimeout(step, resetStepMs);
+                schedule(step, resetStepMs);
             }
             step();
         }
 
         function loop() {
-            clearAll();
-            setTimeout(function () {
+            if (!isRunning) return;
+            schedule(function () {
+                if (!isRunning) return;
                 runForward(function () {
-                    setTimeout(function () {
+                    schedule(function () {
+                        if (!isRunning) return;
                         runReverse(function () {
-                            setTimeout(loop, 200);
+                            schedule(loop, 200);
                         });
                     }, endPauseMs);
                 });
             }, startPauseMs);
         }
 
-        loop();
+        function start() {
+            if (isRunning) return;
+            clearAll();
+            isRunning = true;
+            loop();
+        }
+
+        function stop() {
+            isRunning = false;
+            clearAll();
+        }
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        start();
+                    } else {
+                        stop();
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(section);
+        } else {
+            start();
+        }
     })();
 
     /* ===== CLOUDPANO TOUR RELOADER =====
