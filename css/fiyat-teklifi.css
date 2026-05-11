@@ -734,30 +734,125 @@
 
 @media (max-width: 768px) {
     .site-footer {
-        padding: 48px 20px;
+        padding: 40px 24px 32px;
     }
+
+    /* Flatten nested structure so we can reorder children */
+    .site-footer__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .site-footer__top,
+    .site-footer__left,
+    .site-footer__bottom {
+        display: contents;
+    }
+
+    /* Logo first */
+    .site-footer__logo {
+        order: 1;
+        margin: 0 0 24px;
+    }
+
+    .site-footer__logo img {
+        height: 32px !important;
+    }
+
+    /* Intro: title + desc */
+    .site-footer__intro {
+        order: 2;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
     .site-footer__title {
         font-size: 18px;
     }
+
     .site-footer__desc {
         font-size: 14px;
+        line-height: 1.5;
     }
+
+    /* Contacts: centered, stacked with horizontal divider lines */
     .site-footer__contacts {
+        order: 3;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+        align-items: stretch;
+        gap: 0;
+        margin: 0 0 18px;
     }
+
+    .site-footer__contact {
+        justify-content: center;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        gap: 10px;
+        font-size: 15px;
+    }
+
+    .site-footer__contact[href^="mailto"] span {
+        text-decoration: underline;
+    }
+
     .site-footer__contact-sep {
         display: none;
     }
-    .site-footer__bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
+
+    /* Social links: centered with pipe separators */
     .site-footer__social {
-        flex-wrap: wrap;
-        gap: 16px;
+        order: 4;
+        list-style: none;
+        margin: 0 0 24px;
+        padding: 18px 0 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+    }
+
+    .site-footer__social li {
+        padding: 0 14px;
+        border-right: 1px solid rgba(255, 255, 255, 0.28);
+        line-height: 1;
+    }
+
+    .site-footer__social li:last-child {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .site-footer__social li:first-child {
+        padding-left: 0;
+    }
+
+    .site-footer__social a {
+        font-size: 14px;
+        text-decoration: underline;
+    }
+
+    /* Map below social */
+    .site-footer__map {
+        order: 5;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        margin: 0 0 24px;
+    }
+
+    /* Copyright at bottom with top divider */
+    .site-footer__copy {
+        order: 6;
+        text-align: left;
+        font-size: 13px;
+        padding: 20px 0 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        width: 100%;
+        margin: 0;
     }
 }
 
