@@ -1786,6 +1786,10 @@ img.ft-tech__card-icon {
         font-size: 28px;
     }
 
+    .ft-results__title span {
+        display: block;
+    }
+
     .ft-results__slider {
         gap: 8px;
         justify-content: center;
