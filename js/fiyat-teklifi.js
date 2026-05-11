@@ -1,5 +1,31 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    /* ===== CTA LINK REWRITE =====
+       All Fiyat Teklifi Al / Ücretsiz Burun Analizi CTAs point to rn-calc page.
+    */
+    (function () {
+        const ctaUrl = 'https://lp.elitklinik.com.tr/rn-calc/';
+        const selectors = [
+            '.ft-hero__cta',
+            '.ft-results__cta',
+            '.ft-tech__cta',
+            '.ek-faq__answer-cta'
+        ].join(',');
+
+        document.querySelectorAll(selectors).forEach(function (el) {
+            if (el.tagName === 'A') {
+                el.setAttribute('href', ctaUrl);
+                el.setAttribute('target', '_blank');
+                el.setAttribute('rel', 'noopener');
+            } else {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.open(ctaUrl, '_blank', 'noopener');
+                });
+            }
+        });
+    })();
+
     /* ===== HERO VIDEO MOBILE SWAP =====
        Use a different video source on mobile devices.
     */
