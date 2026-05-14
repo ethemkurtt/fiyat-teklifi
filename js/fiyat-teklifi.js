@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     /* ===== CTA LINK REWRITE =====
-       All Fiyat Teklifi Al / Ücretsiz Burun Analizi CTAs point to rn-calc page.
+       All Fiyat Teklifi Al / Ücretsiz Burun Analizi CTAs point to haircheck page.
     */
     (function () {
-        const ctaUrl = 'https://lp.elitklinik.com.tr/rn-calc/';
+        const ctaUrl = 'https://lp.elithair.com.tr/haircheck/';
         const selectors = [
             '.ft-hero__cta',
             '.ft-results__cta',
